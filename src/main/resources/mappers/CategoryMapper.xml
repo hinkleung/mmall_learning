@@ -116,4 +116,13 @@
       update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!--resultMap直接BaseResultMap就行，MyBatis封装好-->
+  <!--留个疑问：为什么paremeterType不是用java.lang.Integer-->
+  <select id="selectCategoryChildrenByParentId" resultMap="BaseResultMap" parameterType="int">
+    select
+    <include refid="Base_Column_List"/>
+    FROM  mmall_category
+    where parent_id=#{parentId}
+  </select>
 </mapper>
